@@ -1,0 +1,124 @@
+<!-- 
+__authors__    = "Armin Pournaki, Felix Gaisbauer"
+__copyright__ = "Copyright 2021, Armin Pournaki"
+__credits__   = "Eckehard Olbrich"
+__license__   = "GPLv3"
+__version__   = "0.1"
+__email__     = "pournaki@mis.mpg.de"
+ -->
+<head>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">    
+  <script src="https://unpkg.com/jquery"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src= "https://d3js.org/d3-scale-chromatic.v1.min.js"></script>     
+  <script src="https://unpkg.com/force-graph"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"></script>
+  <script src="./utils.js"></script>
+  <script src="./data/bundestag.js"></script>  
+  <script src="./vars.js"></script>
+  <script src="./forces.js"></script>
+  <script src="./export.js"></script>
+</head>
+
+<div id="titleborder">
+<h1>leipzig layout  <span style="font-size:10pt; color: #eee">v0.1</span></h1>
+</div>
+
+<script type="text/javascript">
+// define parameters based on network size
+var N_nodes = data.nodes.length
+if (N_nodes < 100) {
+  var velocitydecay = 0.1
+  var prf_forces = 100
+}
+else if (100 <= N_nodes < 500) {
+  var velocitydecay = 0.2
+  var prf_forces = 50
+}
+else if (N_nodes > 500){
+  var velocitydecay = 0.3
+  var prf_forces = 30
+}
+</script>
+
+<div id="buttons">
+<div style="padding: 5px;width: 500px;border: solid;border-width: 1.5px;">
+ <span style="font-weight:bold">Interface: </span> 
+ <button type="button" onclick="reheat();">Reheat simulation</button>
+  <button type="button" onclick="pause();">Pause simulation</button> 
+  <button type="button" onclick="zoomtofit()">Zoom to fit</button>    
+  </div>
+  <div style="margin-top: 10px;padding: 5px;width: 500px;border: solid;border-width: 1.5px;">
+<span style="font-weight:bold">Parameters: </span> 
+<label for="k_forces">k<sub>forces</sub> = </label>
+<input id="k_forces" name="k_forces"  type="text" value=50 size="2" onkeyup='saveValue(this);'>
+<label style="margin-left:10" for="k_alphas">k<sub>parameters</sub> = </label>
+<input id="k_alphas" name="k_alphas"  type="text" value=0.01 size="2">
+</div>
+
+  <div style="margin-top: 10px;padding: 5px;width: 500px;border: solid;border-width: 1.5px;">
+  <span style="font-weight:bold">Visualization: </span>  
+  <select id = "nodecolor-select">
+    <option value = "None" style="font-weight: bold"> Select node color</option>
+  </select>
+  <select id = "nodelabel-select">
+    <option value = "None" style="font-weight: bold"> Select node label</option>
+  </select>  
+  <button type="button" onclick="toggle_linkvisibility()">Show links</button>   
+</div>
+  <div style="margin-top: 10px;padding: 5px;width: 500px;border: solid;border-width: 1.5px;">
+<span style="font-weight:bold">Export: </span>     
+ <button type="button" onclick="save_positions();">Save positions</button>
+  <button type="button" onclick="saveparams()">Save parameters</button>
+  <button type="button" onclick="d3graph_to_gml()">Save graph for Gephi</button> 
+<br>
+</div>
+<p style="margin-left:5px;margin-right: 5px;float: left;" id="lltext">- log-likelihood = </p>
+<p style="margin-left:5px" id="initial_likelihood">Likelihood value</p>
+<script>
+document.getElementById('k_forces').value = prf_forces
+var prf_forces = document.getElementById('k_forces').value
+var prf_params = document.getElementById('k_alphas').value
+
+</script>
+
+<div class="container">
+  <div class="child" id="graph"></div>
+    <script src="./graphdiv.js"></script>
+  <div class="child" id="chart"></div>
+    <script src="./chart.js"></script>
+</div>
+
+<script>
+// add node selectbox options
+var select_color = document.getElementById("nodecolor-select");
+var select_label = document.getElementById("nodelabel-select");
+
+var options = Object.keys(data.nodes[0])
+for (option in options) {
+  select_color.options[select_color.options.length] = new Option(options[option],options[option])
+  select_label.options[select_label.options.length] = new Option(options[option],options[option])
+}
+document.getElementById("nodecolor-select").addEventListener("change", recolornodes);
+document.getElementById("nodelabel-select").addEventListener("change", relabelnodes);
+
+const autoColorScale = d3.scaleOrdinal(d3.schemeSet1);
+
+function recolornodes(){
+var colorselector = document.getElementById("nodecolor-select");
+var selectedoption = colorselector.options[colorselector.selectedIndex].value
+Graph.nodeColor(node => autoColorScale(node[selectedoption]))}        
+
+function relabelnodes(){
+  var labelselector = document.getElementById("nodelabel-select");
+  var selectedoption = labelselector.options[labelselector.selectedIndex].value
+  Graph.nodeLabel(node => node[selectedoption])
+}
+</script>
+
+<script>
+  setInterval(plot, 50);
+  // setInterval(Graph.zoomToFit(),10)
+</script>

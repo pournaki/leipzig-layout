@@ -1,0 +1,44 @@
+body{
+    margin-left: 50px;
+    margin-top:20px;
+    font-family: Inter,sans-serif;
+}
+
+h1{
+    font-size: 22pt;
+    font-family: Inter,sans-serif;
+    color: #fff;
+    padding: 10px 10px 10px 10px
+
+}
+
+button{
+    font-size: 10pt;
+}
+
+.container{
+    display: flex;
+    height: 100%;
+    width: 80%
+}
+
+.child {
+    width: 600px;
+    height: 500px;
+    border:1px solid black;
+    box-shadow: 5px 5px 5px 5px #ddd;
+    margin-right: 20px
+}
+
+#buttons{
+    margin-bottom: 0px;
+}
+
+#titleborder{
+    background: #000;
+    width:512px;
+}
+
+.tick line {
+    opacity: 0.3
+}
