@@ -28,7 +28,7 @@ with open('./data/network.js', 'w') as outfile:
 Then, in line 11 in `index.html`, replace 'bundestag.js' by 'network.js'.
 
 ## Screenshots
-![interface][/doc/img/interface.png]
+![Interface Screenshot][/doc/img/interface.png]
 
 ## Acknowledgements
 The Leipzig Layout stands on the shoulders of giants:
