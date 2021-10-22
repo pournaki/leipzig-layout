@@ -6,7 +6,7 @@ This is a first implementation of the Leipzig Layout, an interpretable force-dir
 ## Getting started
 Try out the layout algorithm on a Twitter follower network of German parliamentarians by running `index.html` in your preferred browser (we recommend Firefox, for it is what we use for testing). To use your own layout, please create a file in the same format as `bundestag.js`. Here is a Python snippet to show you how to translate a given NetworkX graph to the required format:
 
-```
+```python
 # import libraries
 import networkx as nx
 from networkx.readwrite import json_graph
