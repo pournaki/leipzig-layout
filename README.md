@@ -28,7 +28,7 @@ with open('./data/network.js', 'w') as outfile:
 Then, in line 11 in `index.html`, replace 'bundestag.js' by 'network.js'.
 
 ## Screenshots
-![interface][./doc/img/interface.png]<br/>
+![interface][/doc/img/interface.png]
 
 ## Acknowledgements
 The Leipzig Layout stands on the shoulders of giants:
@@ -42,13 +42,3 @@ This project has received funding from the European Union’s Horizon 2020 resea
 
 ## License
 The Leipzig Layout is licensed under the [GNU GPLV3](https://www.gnu.org/licenses/gpl-3.0.en.html) license.
-
-<!-- logos and links -->
-[title-img]:./doc/img/titlelogo.png
-[title-url]:https://github.com/pournaki/leipzig-layout
-[version-img]:https://img.shields.io/badge/version-0.1-000?style=for-the-badge&?color=ffffff&?logoWidth=100
-[version-url]:https://github.com/pournaki/leipzig-layout
-[javascript-img]:https://img.shields.io/badge/javascript-000?style=for-the-badge&?color=ffffff
-[javascript-url]:https://www.javascript.com/
-[license-img]:https://img.shields.io/badge/license-GNU%20GPLv3-000?style=for-the-badge&?color=ffffff
-[license-url]:https://www.gnu.org/licenses/gpl-3.0.en.html
