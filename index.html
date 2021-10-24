@@ -31,15 +31,15 @@ __email__     = "pournaki@mis.mpg.de"
 var N_nodes = data.nodes.length
 if (N_nodes < 100) {
   var velocitydecay = 0.1
-  var prf_forces = 100
+  var prf_forces_init = 100
 }
 else if (100 <= N_nodes < 500) {
   var velocitydecay = 0.2
-  var prf_forces = 50
+  var prf_forces_init = 50
 }
 else if (N_nodes > 500){
   var velocitydecay = 0.3
-  var prf_forces = 30
+  var prf_forces_init = 30
 }
 </script>
 
@@ -53,7 +53,7 @@ else if (N_nodes > 500){
   <div style="margin-top: 10px;padding: 5px;width: 500px;border: solid;border-width: 1.5px;">
 <span style="font-weight:bold">Parameters: </span> 
 <label for="k_forces">k<sub>forces</sub> = </label>
-<input id="k_forces" name="k_forces"  type="text" value=50 size="2" onkeyup='saveValue(this);'>
+<input id="k_forces" name="k_forces"  type="text" value=0 size="2" onkeyup='saveValue(this);'>
 <label style="margin-left:10" for="k_alphas">k<sub>parameters</sub> = </label>
 <input id="k_alphas" name="k_alphas"  type="text" value=0.01 size="2">
 </div>
@@ -61,7 +61,7 @@ else if (N_nodes > 500){
   <div style="margin-top: 10px;padding: 5px;width: 500px;border: solid;border-width: 1.5px;">
   <span style="font-weight:bold">Visualization: </span>  
   <select id = "nodecolor-select">
-    <option value = "None" style="font-weight: bold"> Select node color</option>
+    <option value = "None" style="font-weight: bold"> Auto-color nodes</option>
   </select>
   <select id = "nodelabel-select">
     <option value = "None" style="font-weight: bold"> Select node label</option>
@@ -78,8 +78,11 @@ else if (N_nodes > 500){
 <p style="margin-left:5px;margin-right: 5px;float: left;" id="lltext">- log-likelihood = </p>
 <p style="margin-left:5px" id="initial_likelihood">Likelihood value</p>
 <script>
-document.getElementById('k_forces').value = prf_forces
+var kforces_html_value = document.getElementById('k_forces').value
+if (kforces_html_value == 0){document.getElementById('k_forces').value = prf_forces_init}
+
 var prf_forces = document.getElementById('k_forces').value
+console.log(prf_forces)
 var prf_params = document.getElementById('k_alphas').value
 
 </script>

@@ -1,11 +1,14 @@
 const elem = document.getElementById('graph');
-
 const Graph = ForceGraph()(elem)
 .graphData({nodes: nodes, links: data.links})
 .width(600)
 .height(500)
 .nodeId('id')
-.nodeLabel('block')
+.nodeLabel('name')
+.nodeColor(node => {if('color' in node)
+                       {return node.color}
+                    else
+                       {return "black"}})
 .nodeVal(5)
 .nodeRelSize(2.5)
 .backgroundColor('#fff')
@@ -27,4 +30,3 @@ const Graph = ForceGraph()(elem)
 .d3Force("follower_force_link",follower_force_link)
 .d3Force("repulsion",repulsion)
 .d3Force("param_force",param_force)
-
