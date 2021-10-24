@@ -25,7 +25,9 @@ with open('./data/network.js', 'w') as outfile:
     outfile.write("data = " + json.dumps(netdict))
 ```
 
-Then, in line 11 in `index.html`, replace 'bundestag.js' by 'network.js'.
+Then, in line 19 in `index.html`, replace 'bundestag.js' by 'network.js'.
+
+By default, nodes will be colored according to the "color" entry in their dictionary, which should be a hex code. If there is no such entry, the nodes will be rendered in black. You can also auto-color nodes according to any other entry via the interface.
 
 ## Screenshots
 ![Interface Screenshot](/doc/img/interface.png)
