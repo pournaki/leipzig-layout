@@ -1,7 +1,8 @@
 # Leipzig Layout
 
 ## Description
-This is a first implementation of the Leipzig Layout, an interpretable force-directed graph layout based on a latent space model. For more information, please refer to the preprint: [INSERT LINK TO PREPRINT]
+This is a first implementation of the Leipzig Layout, an interpretable force-directed graph layout based on a latent space model. For more detailed information, please refer to the preprint: 
+Gaisbauer, F., Pournaki, A., Banisch, S., & Olbrich, E. (2021). Grounding force-directed network layouts with latent space models. arXiv preprint [arXiv:2110.11772](https://arxiv.org/abs/2110.11772).
 
 ## Getting started
 Try out the layout algorithm on a Twitter follower network of German parliamentarians by running `index.html` in your preferred browser (we recommend Firefox, for it is what we use for testing). To use your own layout, please create a file in the same format as `bundestag.js`. Here is a Python snippet to show you how to translate a given NetworkX graph to the required format:
