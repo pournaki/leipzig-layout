@@ -1,7 +1,7 @@
 function d3graph_to_gml(){
   var gml_string = "graph\n[\n"
   var options = Object.keys(data.nodes[0])
-  for (var i = 0; i < n/2; ++i){
+  for (var i = 0; i < n; ++i){
     node = nodes[i]
     gml_string += "node\n"
     gml_string += "[\n"
@@ -13,8 +13,8 @@ function d3graph_to_gml(){
       else {
       gml_string += option + " " + node[option] + "\n"
     }}}
-    gml_string += "alpha " + nodes[i+n/2].x + "\n"
-    gml_string += "beta " + nodes[i+n/2].y + "\n"
+    gml_string += "alpha " + nodes[i+n].x + "\n"
+    gml_string += "beta " + nodes[i+n].y + "\n"
     gml_string += "]\n"
   }
   for (var i = 0; i < data.links.length; ++i){
