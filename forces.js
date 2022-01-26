@@ -72,10 +72,10 @@ function param_force(alpha) {
       di = Math.sqrt((x1-x2)**2+(y1-y2)**2);
       dc = (di**2)/(d_0**2);
       k_params = prf_params * alpha;
-      source_params.vx += k_params*(A[j][i] - (1/(1+Math.exp(-ai-bj+dc))))
-      source_params.vy += k_params*(A[i][j] - (1/(1 + Math.exp(-aj-bi+dc))))
-      target_params.vx += k_params*(A[i][j] - (1/(1 + Math.exp(-aj-bi+dc))))
-      target_params.vy += k_params*(A[j][i]-(1/(1 + Math.exp(-ai-bj+dc))))
+      source_params.vx += k_params*(A[i][j] - (1/(1+Math.exp(-ai-bj+dc))))
+      source_params.vy += k_params*(A[j][i] - (1/(1 + Math.exp(-aj-bi+dc))))
+      target_params.vx += k_params*(A[j][i] - (1/(1 + Math.exp(-aj-bi+dc))))
+      target_params.vy += k_params*(A[i][j]-(1/(1 + Math.exp(-ai-bj+dc))))
     }
   }
 }
