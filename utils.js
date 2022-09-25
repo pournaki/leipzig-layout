@@ -95,16 +95,16 @@ let D = computeDistances()
       dcal = d**2 / d_0**2      
 
       if (A[i][j] != 0) {
-        lik += Math.log( 1 / (1 + (aj * bi * Math.exp(dcal))) )
-      }
-      else {
-        lik += Math.log( 1 - (1 / (1 + (aj * bi * Math.exp(dcal)))) )
-      }
-      if (A[j][i] != 0){
         lik += Math.log( 1 / (1 + (ai * bj * Math.exp(dcal))) )
       }
       else {
         lik += Math.log( 1 - (1 / (1 + (ai * bj * Math.exp(dcal)))) )
+      }
+      if (A[j][i] != 0){
+        lik += Math.log( 1 / (1 + (aj * bi * Math.exp(dcal))) )
+      }
+      else {
+        lik += Math.log( 1 - (1 / (1 + (aj * bi * Math.exp(dcal)))) )
       }     
 }
 }
